@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const daySchema = new mongoose.Schema({
+const daySchema = mongoose.Schema({
   day: {
     type: Date,
-    required: true,
+    required: true
   },
   task: {
     type: String,
@@ -11,4 +11,4 @@ const daySchema = new mongoose.Schema({
   }
 });
 
-module.export = mongoose.model('dayModel', daySchema);
+module.exports = mongoose.model('Day', daySchema);
