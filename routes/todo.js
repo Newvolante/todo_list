@@ -6,8 +6,15 @@ const router = express.Router();
 const Day = require('./../model/day_model');
 
 // GET request for the root route
-router.get('/', (req, res) => {
-  res.render('index');
+router.get('/', async (req, res) => {
+  
+  // the days in the database
+  let days = await Day.find();
+
+  // passing all the days to the index view
+  res.render('index', {
+    days: days
+  });
 });
 
 // GET request for /todo/new_day

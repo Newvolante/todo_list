@@ -23,5 +23,12 @@
       <a class="btn btn-success">Search day</a>
     </nav>
   </div>
+
+  <!-- Showing each day from the database -->
+  <% days.forEach(day => { %>
+    <p><%= day.day.getDay() %></p>
+    <p><%= day.day.toLocaleDateString() %></p>
+  <% }) %>
+
 </body>
 </html>
