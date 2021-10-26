@@ -1,8 +1,7 @@
-// This manages the root route
+// This manages the /todo route
 
 //express settings
 const express = require('express');
-const { SchemaTypeOptions } = require('mongoose');
 const router = express.Router();
 const Day = require('./../model/day_model');
 
