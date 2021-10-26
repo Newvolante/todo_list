@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
   console.log(day);
 
   day.save();
+  res.redirect('/todo');
 });
 
 module.exports = router;
