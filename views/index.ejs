@@ -24,11 +24,26 @@
     </nav>
   </div>
 
-  <!-- Showing each day from the database -->
-  <% days.forEach(day => { %>
-    <p><%= day.day.getDay() %></p>
-    <p><%= day.day.toLocaleDateString() %></p>
-  <% }) %>
+    <div class="container card">
+      <% let weekday = new Array(7) %>
+      <% weekday[0] = "Domenica"; %>
+      <% weekday[1] = "Lunedi"; %>
+      <% weekday[2] = "Martedi"; %>
+      <% weekday[3] = "Mercoledi"; %>
+      <% weekday[4] = "Giovedi"; %>
+      <% weekday[5] = "Venerdi"; %>
+      <% weekday[6] = "Sabato"; %>
+
+      <% function convertDate(dateString) { %>
+      <%   var date = new Date(dateString) %>
+      <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
+      <% } %>
+
+      <% days.forEach(day => { %>
+        <p><%= convertDate(day.day) %></p>
+      <% }) %>
+
+    </div>
 
 </body>
 </html>
