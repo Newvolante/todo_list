@@ -7,13 +7,39 @@
 </div>
 
 <!-- task field -->
-<div class="form group">
+<div class="form group" id="task_contaier">
   <label for="task">Task to add</label>
   <textarea name="task" id="task" cols="30" rows="1" required>test</textarea>
 </div>
+
+<!-- Add new task button -->
+<button id="add_new_task">Add new task</button>
 
 <!-- Submit button -->
 <input type="submit" class="btn btn-info">
 
 <!-- Back button -->
 <a href="/todo" class="btn btn-danger">Back</a>
+
+<script>
+  // add new task button
+  const addNewTaskButton = document.getElementById('add_new_task');
+
+  const taskContainer = document.getElementById('task_contaier');
+  
+  // label to add for each task
+  let label = document.createElement('label');
+  label.innerHTML = "Task to add";
+
+  // label to add for each task
+  let input = document.createElement('input');
+  input.type = "text";
+  // input.name = "task";
+
+
+  addNewTaskButton.addEventListener('click', function() {
+    console.log('add new task clicked');
+    taskContainer.appendChild(label);
+    taskContainer.appendChild(input);
+  });
+</script>
