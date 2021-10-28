@@ -24,7 +24,7 @@
     </nav>
   </div>
 
-    <div class="container card">
+    <div class="container">
       <% let weekday = new Array(7) %>
       <% weekday[0] = "Domenica"; %>
       <% weekday[1] = "Lunedi"; %>
@@ -40,7 +40,19 @@
       <% } %>
 
       <% days.forEach(day => { %>
-        <p><%= convertDate(day.day) %></p>
+        <div class="card">
+          <div class="card-body">
+            <!-- Day of the week -->
+            <h3><%= convertDate(day.day) %></h2>
+            <!-- Tasks of the day -->
+            <div class="card-body">
+              <h5>Tasks</h5>
+              <ul>
+                <li><%= day.task %></li>
+              </ul>
+          </div>
+          </div>
+        </div>
       <% }) %>
 
     </div>
