@@ -6,14 +6,14 @@
   <input name="day" type="date" id="day" required>
 </div>
 
-<!-- task field -->
+<!-- task field(s) -->
 <div class="form group" id="task_contaier">
-  <label for="task">Task to add</label>
-  <textarea name="task" id="task" cols="30" rows="1" required>test</textarea>
+  <label for="task">Task to add -></label>
+  <input type="text" name="task" id="task" required>
 </div>
 
 <!-- Add new task button -->
-<button id="add_new_task">Add new task</button>
+<button class="btn btn-warning" id="add_new_task">Add new task</button>
 
 <!-- Submit button -->
 <input type="submit" class="btn btn-info">
@@ -25,20 +25,28 @@
   // add new task button
   const addNewTaskButton = document.getElementById('add_new_task');
 
-  const taskContainer = document.getElementById('task_contaier');
   
-  // label to add for each task
-  let label = document.createElement('label');
-  label.innerHTML = "Task to add";
-
-  // label to add for each task
-  let input = document.createElement('input');
-  input.type = "text";
-  // input.name = "task";
-
-
+  // event listener to add task fields
   addNewTaskButton.addEventListener('click', function() {
+    // task container
+    const taskContainer = document.getElementById('task_contaier');
+    
+    // label to add for each task
+    let label = document.createElement('label');
+    label.innerHTML = "Task to add ->";
+    // label.class = "d-block";
+    
+    // input to add for each task
+    let input = document.createElement('input');
+    input.type = "text";
+    input.name = "task";
+    // input.class = "d-block";
+
+    // logging check
     console.log('add new task clicked');
+
+    // appending label+input each time the button is pressed
+    taskContainer.appendChild(document.createElement("div")); // this is what currently makes label+input occupy a whole line
     taskContainer.appendChild(label);
     taskContainer.appendChild(input);
   });
