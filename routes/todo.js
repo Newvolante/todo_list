@@ -26,7 +26,16 @@ router.get('/new_day', (req, res) => {
 router.post('/', (req, res) => {
   let day = new Day({
     day: req.body.day,
-    task: req.body.task
+    task1: req.body.task1,
+    task2: req.body.task2,
+    task3: req.body.task3,
+    task4: req.body.task4,
+    task5: req.body.task5,
+    task6: req.body.task6,
+    task7: req.body.task7,
+    task8: req.body.task8,
+    task9: req.body.task9,
+    task10: req.body.task10,
   });
   console.log(day);
 
