@@ -43,4 +43,11 @@ router.post('/', (req, res) => {
   res.redirect('/todo');
 });
 
+// delete route
+router.delete('/:id', async (req, res) => {
+  let day = req.params.id;
+  await Day.findByIdAndDelete(day);
+  res.redirect('/todo');
+});
+
 module.exports = router;
