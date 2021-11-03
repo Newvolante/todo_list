@@ -79,7 +79,7 @@
                   <li><%= day.task10 %></li>
                 <% } %>
               </ul>
-              <form action="/todo/<%= days.id %>?_method=DELETE" method="POST">
+              <form action="/todo/<%= day.id %>?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-danger">DELETE DAY</button>
               </form>
             </div>

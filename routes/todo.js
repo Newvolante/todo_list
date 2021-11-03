@@ -45,9 +45,14 @@ router.post('/', (req, res) => {
 
 // delete route
 router.delete('/:id', async (req, res) => {
-  let day = req.params.id;
-  await Day.findByIdAndDelete(day);
-  res.redirect('/todo');
+  try {
+    let day = req.params.id;
+    await Day.findByIdAndDelete(day);
+    res.redirect('/todo');
+  }
+  catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
