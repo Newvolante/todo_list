@@ -43,6 +43,11 @@ router.post('/', (req, res) => {
   res.redirect('/todo');
 });
 
+// edit route
+router.put('/edit/:id', (req, res) => {
+  let day = Day.findById(req.params.id);
+});
+
 // delete route
 router.delete('/:id', async (req, res) => {
   try {
