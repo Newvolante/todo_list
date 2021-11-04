@@ -82,6 +82,8 @@
               <form action="/todo/<%= day.id %>?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-danger">DELETE DAY</button>
               </form>
+              <!-- edit button -->
+              <a href="/todo/edit/<%= day.id %>" class="btn btn-info">Edit day</a>
             </div>
           </div>
         </div>

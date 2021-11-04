@@ -19,7 +19,18 @@ router.get('/', async (req, res) => {
 
 // GET request for /todo/new_day
 router.get('/new_day', (req, res) => {
-  res.render('new_day.ejs');
+  res.render('new_day.ejs', {
+    day: new Day()
+  });
+});
+
+// GET request for the edit route
+router.get('/edit/:id', (req, res) => {
+  let day = Day.findById(req.params.id);
+  console.log(day);
+  res.render('edit', {
+    day: day
+  });
 });
 
 // POST request

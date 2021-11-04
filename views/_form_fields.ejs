@@ -3,13 +3,13 @@
 <!-- day field -->
 <div class="form group">
   <label for="day">Day to add</label>
-  <input name="day" type="date" id="day" required>
+  <input name="day" type="date" id="day" value="<%= day.day %>" required>
 </div>
 
 <!-- task 1 -->
 <div class="form group" id="task_contaier">
   <label for="task1">Task 1 -></label>
-  <input type="text" name="task1" id="task1" placeholder="add task 1" required>
+  <input type="text" name="task1" id="task1" placeholder="add task 1" value="<%= day.task1 %>" required>
 </div>
 <!-- task 2 -->
 <div class="form group" id="task_contaier">
@@ -61,7 +61,7 @@
 
 
 <!-- Add new task button -->
-<button class="btn btn-warning" id="add_new_task">Add new task</button>
+<button class="btn btn-warning" id="add_new_task">Salva</button>
 
 <!-- Submit button -->
 <input type="submit" class="btn btn-info">
