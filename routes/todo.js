@@ -25,9 +25,9 @@ router.get('/new_day', (req, res) => {
 });
 
 // GET request for the edit route
-router.get('/edit/:id', (req, res) => {
-  let day = Day.findById(req.params.id);
-  console.log(day);
+router.get('/edit/:id', async (req, res) => {
+  let day = await Day.findById(req.params.id);
+  
   res.render('edit', {
     day: day
   });
