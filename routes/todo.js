@@ -27,6 +27,8 @@ router.get('/new_day', (req, res) => {
 // GET request for the edit route
 router.get('/edit/:id', async (req, res) => {
   let day = await Day.findById(req.params.id);
+
+  console.log(day.day);
   
   res.render('edit', {
     day: day
@@ -36,7 +38,7 @@ router.get('/edit/:id', async (req, res) => {
 // POST request
 router.post('/', (req, res) => {
   let day = new Day({
-    day: req.body.day,
+    day: req.body.day.toISOString().slice(0, 16).replace('T', ' '),
     task1: req.body.task1,
     task2: req.body.task2,
     task3: req.body.task3,
@@ -48,7 +50,7 @@ router.post('/', (req, res) => {
     task9: req.body.task9,
     task10: req.body.task10,
   });
-  console.log(day);
+  console.log(day.day);
 
   day.save();
   res.redirect('/todo');
