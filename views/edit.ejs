@@ -11,11 +11,11 @@
   <title>Edit day</title>
 </head>
 <body>
-  <h1>Edit day</h1>
-  
-  <form action="/todo/edit/<%= day.id %>?_method=PUT" method="POST">
-    <%- include('_form_fields') %>
-  </form>
-
+  <div class="container">
+    <h1>Edit day</h1>
+    <form action="/todo/edit/<%= day.id %>?_method=PUT" method="POST">
+      <%- include('_form_fields') %>
+    </form>
+  </div>
 </body>
 </html>
