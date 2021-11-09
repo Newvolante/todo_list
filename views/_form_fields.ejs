@@ -3,7 +3,7 @@
 <!-- day field -->
 <div class="form group">
   <label for="day">Day to add</label>
-  <input name="day" type="date" id="day" value="<%= day.day %>" required>
+  <input name="day" type="date" id="day" value="<%= day.day.toISOString().substr(0, 10) %>" required>
 </div>
 
 <!-- task 1 -->
