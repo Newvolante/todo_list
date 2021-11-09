@@ -55,8 +55,24 @@ router.post('/', (req, res) => {
 });
 
 // edit route
-router.put('/edit/:id', (req, res) => {
-  let day = Day.findById(req.params.id);
+router.put('/edit/:id', async (req, res) => {
+  let day = await Day.findById(req.params.id);
+
+  day.day = req.body.day;
+  day.task1 = req.body.task1;
+  day.task2 = req.body.task2;
+  day.task3 = req.body.task3;
+  day.task4 = req.body.task4;
+  day.task5 = req.body.task5;
+  day.task6 = req.body.task6;
+  day.task7 = req.body.task7;
+  day.task8 = req.body.task8;
+  day.task9 = req.body.task9;
+  day.task10 = req.body.task10;
+  
+  await day.save();
+
+  res.redirect('/todo');
 });
 
 // delete route
