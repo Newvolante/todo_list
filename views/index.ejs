@@ -13,82 +13,73 @@
 <body>
   <h1 class="text-center">My TO-DOs</h1>
 
-  <!-- Main navbar -->
-  <div class="text-center">
-    <nav class="navbar navbar-nav d-inline ">
-      <a href="/todo/new_day" class="btn btn-info">Add new day</a>
-      <a class="btn btn-success">Today</a>
-      <a class="btn btn-success">Tomorrow</a>
-      <a class="btn btn-success">Current week</a>
-      <a class="btn btn-success">Search day</a>
-    </nav>
-  </div>
+  <%- include('_navbar') %>
+  
+  <div class="container">
+    <% let weekday = new Array(7) %>
+    <% weekday[0] = "Domenica"; %>
+    <% weekday[1] = "Lunedi"; %>
+    <% weekday[2] = "Martedi"; %>
+    <% weekday[3] = "Mercoledi"; %>
+    <% weekday[4] = "Giovedi"; %>
+    <% weekday[5] = "Venerdi"; %>
+    <% weekday[6] = "Sabato"; %>
 
-    <div class="container">
-      <% let weekday = new Array(7) %>
-      <% weekday[0] = "Domenica"; %>
-      <% weekday[1] = "Lunedi"; %>
-      <% weekday[2] = "Martedi"; %>
-      <% weekday[3] = "Mercoledi"; %>
-      <% weekday[4] = "Giovedi"; %>
-      <% weekday[5] = "Venerdi"; %>
-      <% weekday[6] = "Sabato"; %>
+    <% function convertDate(dateString) { %>
+    <%   var date = new Date(dateString) %>
+    <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
+    <% } %>
 
-      <% function convertDate(dateString) { %>
-      <%   var date = new Date(dateString) %>
-      <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
-      <% } %>
-
-      <% days.forEach(day => { %>
-        <div class="card">
+    <% days.forEach(day => { %>
+      <div class="card">
+        <div class="card-body">
+          <!-- Day of the week -->
+          <h3><%= convertDate(day.day) %></h2>
+          <!-- Tasks of the day -->
           <div class="card-body">
-            <!-- Day of the week -->
-            <h3><%= convertDate(day.day) %></h2>
-            <!-- Tasks of the day -->
-            <div class="card-body">
-              <h5>Tasks</h5>
-              <ul>
-                <% if(day.task1 != "") {%>
-                  <li><%= day.task1 %></li>
-                <% } %>
-                <% if(day.task2 != "") {%>
-                  <li><%= day.task2 %></li>
-                <% } %>
-                <% if(day.task3 != "") {%>
-                  <li><%= day.task3 %></li>
-                <% } %>
-                <% if(day.task4 != "") {%>
-                  <li><%= day.task4 %></li>
-                <% } %>
-                <% if(day.task5 != "") {%>
-                  <li><%= day.task5 %></li>
-                <% } %>
-                <% if(day.task6 != "") {%>
-                  <li><%= day.task6 %></li>
-                <% } %>
-                <% if(day.task7 != "") {%>
-                  <li><%= day.task7 %></li>
-                <% } %>
-                <% if(day.task8 != "") {%>
-                  <li><%= day.task8 %></li>
-                <% } %>
-                <% if(day.task9 != "") {%>
-                  <li><%= day.task9 %></li>
-                <% } %>
-                <% if(day.task10 != "") {%>
-                  <li><%= day.task10 %></li>
-                <% } %>
-              </ul>
-                <form action="/todo/<%= day.id %>?_method=DELETE" method="POST">
-                  <button type="submit" class="btn btn-danger d-inline">DELETE DAY</button>
-                  <!-- edit button -->
-                  <a href="/todo/edit/<%= day.id %>" class="btn btn-info d-inline">Edit day</a>
-                </form>
-            </div>
+            <h5>Tasks</h5>
+            <ul>
+              <% if(day.task1 != "") {%>
+                <li><%= day.task1 %></li>
+              <% } %>
+              <% if(day.task2 != "") {%>
+                <li><%= day.task2 %></li>
+              <% } %>
+              <% if(day.task3 != "") {%>
+                <li><%= day.task3 %></li>
+              <% } %>
+              <% if(day.task4 != "") {%>
+                <li><%= day.task4 %></li>
+              <% } %>
+              <% if(day.task5 != "") {%>
+                <li><%= day.task5 %></li>
+              <% } %>
+              <% if(day.task6 != "") {%>
+                <li><%= day.task6 %></li>
+              <% } %>
+              <% if(day.task7 != "") {%>
+                <li><%= day.task7 %></li>
+              <% } %>
+              <% if(day.task8 != "") {%>
+                <li><%= day.task8 %></li>
+              <% } %>
+              <% if(day.task9 != "") {%>
+                <li><%= day.task9 %></li>
+              <% } %>
+              <% if(day.task10 != "") {%>
+                <li><%= day.task10 %></li>
+              <% } %>
+            </ul>
+              <form action="/todo/<%= day.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger d-inline">DELETE DAY</button>
+                <!-- edit button -->
+                <a href="/todo/edit/<%= day.id %>" class="btn btn-info d-inline">Edit day</a>
+              </form>
           </div>
         </div>
-      <% }) %>
-    </div>
+      </div>
+    <% }) %>
+  </div>
 
 </body>
 </html>
