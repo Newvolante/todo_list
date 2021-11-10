@@ -36,7 +36,7 @@ router.get('/edit/:id', async (req, res) => {
 // POST request
 router.post('/', (req, res) => {
   let day = new Day({
-    day: req.body.day.toISOString().slice(0, 16).replace('T', ' '),
+    day: req.body.day,
     task1: req.body.task1,
     task2: req.body.task2,
     task3: req.body.task3,
