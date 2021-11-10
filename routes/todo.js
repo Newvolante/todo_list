@@ -24,6 +24,11 @@ router.get('/new_day', (req, res) => {
   });
 });
 
+// GET request for todo/today
+router.get('/today', (req, res) => {
+  res.render('today');
+});
+
 // GET request for the edit route
 router.get('/edit/:id', async (req, res) => {
   let day = await Day.findById(req.params.id);
