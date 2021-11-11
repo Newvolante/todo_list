@@ -26,7 +26,20 @@ router.get('/new_day', (req, res) => {
 
 // GET request for todo/today
 router.get('/today', (req, res) => {
-  res.render('today');
+  let today = new Date();
+
+  let matchDay = Day.find({
+    day: today
+  })
+
+  console.log(matchDay.day);
+
+  res.render('today', {
+    today: matchDay
+  });
+
+
+
 });
 
 // GET request for the edit route
