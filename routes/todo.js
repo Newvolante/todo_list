@@ -28,18 +28,31 @@ router.get('/new_day', (req, res) => {
 router.get('/today', (req, res) => {
   let today = new Date();
 
-  let matchDay = Day.find({
-    day: today
-  })
+  let year = today.getFullYear().toString();
+  console.log(year);
+  let month = today.getMonth() + 1; // starts from 0 (January)
+  month.toString();
+  console.log(month);
+  let day = today.getDate().toString();
+  console.log(day);
 
-  console.log(matchDay.day);
+  let date = year + "-" +  month + "-" + day;
+  console.log(typeof date);
+  console.log(date);
+
+  let matchDay = Day.find({
+    day: date  // today is not recognized
+  }, function(err, data) {
+    if (err) {
+      console.log("there is an error...");
+    } else {
+      console.log(`Day retrieved from database: ${data}`);
+    }
+  })
 
   res.render('today', {
     today: matchDay
   });
-
-
-
 });
 
 // GET request for the edit route
