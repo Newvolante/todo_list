@@ -16,13 +16,24 @@
   <%- include('_navbar') %>
   
   <% let today = new Date().toLocaleDateString() %>
-
-  <p>today is: <%= today %></p>
-  
-
-  <p>day found in the database: <%= today.day %></p>
-
   <div class="container">
+    <div class="card">
+      <div class="card/body">
+        <h2><%= today %></h2>
+        <ul>
+          <li>Task 1: <%= matchDay[0].task1 %></li>
+          <li>Task 2: <%= matchDay[0].task2 %></li>
+          <li>Task 3: <%= matchDay[0].task3 %></li>
+          <li>Task 4: <%= matchDay[0].task4 %></li>
+          <li>Task 5: <%= matchDay[0].task5 %></li>
+          <li>Task 6: <%= matchDay[0].task6 %></li>
+          <li>Task 7: <%= matchDay[0].task7 %></li>
+          <li>Task 8: <%= matchDay[0].task8 %></li>
+          <li>Task 9: <%= matchDay[0].task9 %></li>
+          <li>Task 10: <%= matchDay[0].task10 %></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </body>
 </html>
