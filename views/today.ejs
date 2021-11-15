@@ -14,12 +14,26 @@
   <h1 class="text-center">My TO-DOs</h1>
 
   <%- include('_navbar') %>
-  
+
+  <% let weekday = new Array(7) %>
+  <% weekday[0] = "Domenica"; %>
+  <% weekday[1] = "Lunedi"; %>
+  <% weekday[2] = "Martedi"; %>
+  <% weekday[3] = "Mercoledi"; %>
+  <% weekday[4] = "Giovedi"; %>
+  <% weekday[5] = "Venerdi"; %>
+  <% weekday[6] = "Sabato"; %>
+
+  <% function convertDate(dateString) { %>
+    <%   var date = new Date(dateString) %>
+    <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
+  <% } %>
+
   <% let today = new Date().toLocaleDateString() %>
   <div class="container">
     <div class="card">
       <div class="card/body">
-        <h2><%= today %></h2>
+        <h2><%= convertDate(today) %></h2>
         <ul>
           <li>Task 1: <%= matchDay[0].task1 %></li>
           <li>Task 2: <%= matchDay[0].task2 %></li>
