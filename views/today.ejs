@@ -18,25 +18,30 @@
 
   <%- include('_navbar') %>
 
-  <div class="container">
-    <% let weekday = new Array(7) %>
-    <% weekday[0] = "Domenica"; %>
-    <% weekday[1] = "Lunedi"; %>
-    <% weekday[2] = "Martedi"; %>
-    <% weekday[3] = "Mercoledi"; %>
-    <% weekday[4] = "Giovedi"; %>
-    <% weekday[5] = "Venerdi"; %>
-    <% weekday[6] = "Sabato"; %>
-
-    <% function convertDate(dateString) { %>
-    <%   var date = new Date(dateString) %>
-    <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
-    <% } %>
-
-    <div class="card">
-      <div class="card/body">
-        <% let today = new Date().toLocaleDateString() %>
-        <h3><%= convertDate(today) %></h3>
+  <!-- if today is not found in the database -->
+  <% if(matchDay.length == 0) { %>
+    <h3>Today was not found</h3>
+  <!-- if today is found in the database -->
+  <% } else { %>
+    <div class="container">
+      <% let weekday = new Array(7) %>
+      <% weekday[0] = "Domenica"; %>
+      <% weekday[1] = "Lunedi"; %>
+      <% weekday[2] = "Martedi"; %>
+      <% weekday[3] = "Mercoledi"; %>
+      <% weekday[4] = "Giovedi"; %>
+      <% weekday[5] = "Venerdi"; %>
+      <% weekday[6] = "Sabato"; %>
+    
+      <% function convertDate(dateString) { %>
+        <%   var date = new Date(dateString) %>
+        <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
+        <% } %>
+      
+      <div class="card">
+        <div class="card/body">
+          <% let today = new Date().toLocaleDateString() %>
+          <h3><%= convertDate(today) %></h3>
         <div class="card-body">
           <h5>Tasks</h5>
           <ul>
@@ -54,7 +59,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <% } %>
 </body>
 
 </html>

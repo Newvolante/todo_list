@@ -51,7 +51,7 @@ router.get('/today', async (req, res) => {
     day: date
   })
 
-  console.log("found matching day:", matchDay);
+  matchDay.length != 0 ? console.log(`A matching day was found`) : console.log('A matching day was NOT found');
 
   res.render('today', {
     matchDay: matchDay
