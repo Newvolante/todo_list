@@ -26,29 +26,33 @@ router.get('/new_day', (req, res) => {
 
 // GET request for todo/today
 router.get('/today', async (req, res) => {
+  // today's date
   let today = new Date();
 
+  // year
   let year = today.getFullYear().toString();
-  console.log("Year:", year);
-  console.log("Year is of type:", typeof year);
+  console.log(`Today's year is   ${year}   and it's of type ${typeof year}`);
+  
+  // month
   let month = today.getMonth() + 1; // starts from 0 (January)
   month.toString();
-  console.log("Month:", month);
-  console.log("Month is of type:", typeof month);
+  console.log(`Today's month is   ${month}   and it's of type ${typeof month}`);
+  
+  // day
   let day = today.getDate().toString();
-  console.log("day:",day);
-  console.log("Day is of type:", typeof day);
-
+  console.log(`Today's month is   ${day}   and it's of type ${typeof day}`);  
+  
+  // date
   let date = year + "-" + month + "-" + day;
-  console.log("Date is of type:", typeof date);
-  console.log("Current date:", date);
+  console.log(`Today's date is   ${date}   and it's of type ${typeof date}`);  
+
 
   // querying the database
   let matchDay = await Day.find({
     day: date
   })
 
-  console.log("matchDay:", matchDay);
+  console.log("found matching day:", matchDay);
 
   res.render('today', {
     matchDay: matchDay
