@@ -46,7 +46,6 @@ router.get('/today', async (req, res) => {
   let date = year + "-" + month + "-" + day;
   console.log(`Today's date is   ${date}   and it's of type ${typeof date}`);  
 
-
   // querying the database
   let matchDay = await Day.find({
     day: date
