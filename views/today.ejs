@@ -20,7 +20,11 @@
 
   <!-- if today is not found in the database -->
   <% if(matchDay.length == 0) { %>
-    <h3>Today was not found</h3>
+    <div class="container">
+      <div class="card">
+        <h3>Today was not found</h3>
+      </div>
+    </div>
   <!-- if today is found in the database -->
   <% } else { %>
     <div class="container">
