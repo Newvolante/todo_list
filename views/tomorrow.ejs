@@ -21,6 +21,15 @@
   <div class="container">
     <div class="card">
       <h3>Tomorrow goes here</h3>
+      <!-- today -->
+      <% let today = new Date(); %>
+      <%= console.log("Today is", today); %>
+
+      <!-- tomorrow -->
+      <% let tomorrow = new Date(); %>
+      <% tomorrow.setDate(today.getDate() + 1) %>
+      <% console.log("tomorrow => ",tomorrow.toLocaleDateString()); %>
+
     </div>
   </div>
 
