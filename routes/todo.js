@@ -58,6 +58,11 @@ router.get('/today', async (req, res) => {
   });
 });
 
+// GET request for the tomorrow view
+router.get('/tomorrow', (req, res) => {
+  res.render('tomorrow');
+});
+
 // GET request for the edit route
 router.get('/edit/:id', async (req, res) => {
   let day = await Day.findById(req.params.id);
