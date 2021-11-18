@@ -18,20 +18,53 @@
 
   <%- include('_navbar') %>
 
-  <div class="container">
-    <div class="card">
-      <h3>Tomorrow goes here</h3>
-      <!-- today -->
-      <% let today = new Date(); %>
-      <%= console.log("Today is", today); %>
-
-      <!-- tomorrow -->
-      <% let tomorrow = new Date(); %>
-      <% tomorrow.setDate(today.getDate() + 1) %>
-      <% console.log("tomorrow => ",tomorrow.toLocaleDateString()); %>
-
+  <!-- if today is not found in the database -->
+  <% if(day.length == 0) { %>
+    <div class="container">
+      <div class="card">
+        <h3>Tomorrow was not found</h3>
+      </div>
     </div>
-  </div>
+  <!-- if tomorrow is found in the database -->
+  <% } else { %>
+    <div class="container">
+      <% let weekday = new Array(7) %>
+      <% weekday[0] = "Domenica"; %>
+      <% weekday[1] = "Lunedi"; %>
+      <% weekday[2] = "Martedi"; %>
+      <% weekday[3] = "Mercoledi"; %>
+      <% weekday[4] = "Giovedi"; %>
+      <% weekday[5] = "Venerdi"; %>
+      <% weekday[6] = "Sabato"; %>
+    
+      <% function convertDate(dateString) { %>
+        <%   var date = new Date(dateString) %>
+        <%   return weekday[date.getDay()] + ", " + date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear(); %>
+        <% } %>
+      
+      <div class="card">
+        <div class="card/body">
+          <% let today = new Date() %>
+          <% tomorrow = today.setDate(today.getDate() + 1) %>
+          <h3><%= convertDate(tomorrow) %></h3>
+        <div class="card-body">
+          <h5>Tasks</h5>
+          <ul>
+            <li><%= day[0].task1 %></li>
+            <li><%= day[0].task2 %></li>
+            <li><%= day[0].task3 %></li>
+            <li><%= day[0].task4 %></li>
+            <li><%= day[0].task5 %></li>
+            <li><%= day[0].task6 %></li>
+            <li><%= day[0].task7 %></li>
+            <li><%= day[0].task8 %></li>
+            <li><%= day[0].task9 %></li>
+            <li><%= day[0].task10 %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% } %>
 
 </body>
 
