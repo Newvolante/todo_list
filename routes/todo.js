@@ -60,31 +60,37 @@ router.get('/today', async (req, res) => {
 
 // GET request for todo/tomorrow
 router.get('/tomorrow', async (req, res) => {
-
+  
   // today
   let today = new Date();
-
+  
   // tomorrow
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);  // obtaining tomorrow's date
-
+  
   // date to search
   let year = tomorrow.getFullYear();
   let month = tomorrow.getMonth() + 1;
   let number = tomorrow.getDate();
   let date = year + "-" + month + "-" + number;   // date in format yyyy-mm-dd
- 
+  
   // querying the database for tomorrow
   let matchingDay = await Day.find({
     day: date
   });
-
+  
   matchingDay.length != 0 ? console.log(`A matching day was found`) : console.log('A matching day was NOT found');
-
+  
   res.render('tomorrow', {
     day: matchingDay
   });
 });
+
+// GET request for todo/week
+router.get('/week', (req, res) => {
+  res.render('week');
+});
+
 
 // GET request for the edit route
 router.get('/edit/:id', async (req, res) => {
