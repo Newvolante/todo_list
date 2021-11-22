@@ -87,8 +87,47 @@ router.get('/tomorrow', async (req, res) => {
 });
 
 // GET request for todo/week
-router.get('/week', (req, res) => {
-  res.render('week');
+router.get('/week', async (req, res) => {
+
+  // today's date
+  let today = new Date();
+  // year
+  let year = today.getFullYear().toString();
+  // month
+  let month = today.getMonth() + 1; // starts from 0 (January)
+  month.toString();
+  // day
+  let day = today.getDate().toString();
+  // weekday
+  let weekday = today.getDay();
+  // date
+  let date = year + "-" + month + "-" + day;
+
+  // returning the day of the week
+  let dayConverter = [];
+  dayConverter[0] = "Domenica";
+  dayConverter[1] = "Lunedi";
+  dayConverter[2] = "Martedi";
+  dayConverter[3] = "Mercoledi";
+  dayConverter[4] = "Giovedi";
+  dayConverter[5] = "Venerdi";
+  dayConverter[6] = "Sabato";
+
+  console.log(`Oggi, il primo giorno da inserire è ${dayConverter[weekday]}`);
+
+  // lunedi
+  let lunedi = Day.find({
+
+  });
+
+  // querying the database
+  let matchDay = await Day.find({
+    day: date
+  })
+
+  res.render('week', {
+    matchDay: matchDay
+  });
 });
 
 
