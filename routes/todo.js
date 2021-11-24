@@ -115,19 +115,58 @@ router.get('/week', async (req, res) => {
 
   console.log(`Oggi, il primo giorno da inserire è ${dayConverter[weekday]}`);
 
-  // lunedi
-  let lunedi = Day.find({
+  // days to add before and after
+  let daysBefore = 0;
+  let daysAfter = 0;
 
-  });
+  // function to tell how many days to add before and after
+  function addDays(today) {
+    switch(dayConverter[weekday]) {
+      case 0:
+        daysBefore = 0;
+        daysAfter = 6;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 1:
+        daysBefore = 1;
+        daysAfter = 5;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 2:
+        daysBefore = 2;
+        daysAfter = 4;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 3:
+        daysBefore = 3;
+        daysAfter = 3;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 4:
+        daysBefore = 4;
+        daysAfter = 2;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 5:
+        daysBefore = 5;
+        daysAfter = 1;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+      case 6:
+        daysBefore = 6;
+        daysAfter = 0;
+        return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+    }
+    return daysBefore;
+  }
+
+  console.log(addDays(today));
 
   // querying the database
-  let matchDay = await Day.find({
+  let oggi = await Day.find({
     day: date
   })
 
-  res.render('week', {
-    matchDay: matchDay
-  });
+  // playing with dates (adding days)
+  let test = new Date();
+  console.log("old", test);
+  test.setDate(test.getDate() + 10)
+  console.log("new", test);
+  
 });
 
 
