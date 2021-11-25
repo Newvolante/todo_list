@@ -120,41 +120,65 @@ router.get('/week', async (req, res) => {
   let daysAfter = 0;
 
   // function to tell how many days to add before and after
-  function addDays(today) {
-    switch(dayConverter[weekday]) {
+  function addDays() {
+    console.log('switching on ', weekday);
+    switch(weekday) {
       case 0:
         daysBefore = 0;
         daysAfter = 6;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 1:
         daysBefore = 1;
         daysAfter = 5;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 2:
         daysBefore = 2;
         daysAfter = 4;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 3:
         daysBefore = 3;
         daysAfter = 3;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 4:
         daysBefore = 4;
         daysAfter = 2;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 5:
         daysBefore = 5;
         daysAfter = 1;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
       case 6:
         daysBefore = 6;
         daysAfter = 0;
         return `Today is ${dayConverter[weekday]} and I will add ${daysBefore} days before and ${daysAfter} days after`;
+        break;
     }
-    return daysBefore;
   }
 
+  // how many days before and after?
   console.log(addDays(today));
+
+  // finding the days to add before
+  if (daysBefore) {
+    // the array containing the days to search for and to add before
+    let daysBeforeArr = [];
+    daysBefore --;
+    for (daysBefore; daysBefore >= 0; daysBefore --) {
+      // each loop is 1 day lesser than today
+      console.log('in for loop', daysBefore);
+      // console.log(today.setDate(today.getDate() - 1));
+      today.setDate(today.getDate() - 1).toLocaleString();
+      daysBeforeArr[daysBefore] = today;
+      console.log('added ', daysBeforeArr[daysBefore]);
+    }
+  }
+
 
   // querying the database
   let oggi = await Day.find({
@@ -162,10 +186,10 @@ router.get('/week', async (req, res) => {
   })
 
   // playing with dates (adding days)
-  let test = new Date();
-  console.log("old", test);
-  test.setDate(test.getDate() + 10)
-  console.log("new", test);
+  // let test = new Date();
+  // console.log("old", test);
+  // test.setDate(test.getDate() + 10)
+  // console.log("new", test);
   
 });
 
