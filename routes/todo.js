@@ -162,23 +162,32 @@ router.get('/week', async (req, res) => {
   }
 
   // how many days before and after?
-  console.log(addDays(today));
+  console.log(addDays());
+  
+  // array with days before
+  let daysBeforeArr = [];
 
   // finding the days to add before
   if (daysBefore) {
     // the array containing the days to search for and to add before
-    let daysBeforeArr = [];
     daysBefore --;
     for (daysBefore; daysBefore >= 0; daysBefore --) {
       // each loop is 1 day lesser than today
       console.log('in for loop', daysBefore);
       // console.log(today.setDate(today.getDate() - 1));
-      today.setDate(today.getDate() - 1).toLocaleString();
-      daysBeforeArr[daysBefore] = today;
+      let loopYear = new Date(today.setDate(today.getDate() - 1)).getFullYear();
+      console.log('loopYear is', year);
+      let loopMonth = new Date(today.setDate(today.getDate() - 1)).getMonth() + 1;
+      console.log('loopMonth is', month);
+      let loopDay = new Date(today.setDate(today.getDate() - 1)).getDate();
+      console.log('loopDay is', loopDay);
+      let loopDate = loopYear + "-" + loopMonth + "-" + loopDay;
+      daysBeforeArr[daysBefore] = loopDate;
       console.log('added ', daysBeforeArr[daysBefore]);
     }
   }
 
+  console.log('Array populated with previous days to add:', daysBeforeArr);
 
   // querying the database
   let oggi = await Day.find({
