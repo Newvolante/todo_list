@@ -69,14 +69,21 @@ router.get('/tomorrow', async (req, res) => {
   tomorrow.setDate(today.getDate() + 1);  // obtaining tomorrow's date
   
   // date to search
-  let year = tomorrow.getFullYear();
-  let month = tomorrow.getMonth() + 1;
-  let number = tomorrow.getDate();
-  let date = year + "-" + month + "-" + number;   // date in format yyyy-mm-dd
+  let tomorrowYear = tomorrow.getFullYear();
+  let tomorrowMonth = tomorrow.getMonth() + 1;
+  let tomorrowNumber = tomorrow.getDate();
+
+  // because numbers from 0 to 9 have a 0 in front of them
+  if( tomorrowNumber <=9 ) {
+    tomorrowNumber = "0" + tomorrowNumber;
+  }
+
+  let tomorrowDate = tomorrowYear + "-" + tomorrowMonth + "-" + tomorrowNumber;   // date in format yyyy-mm-dd
+  console.log(tomorrowDate);
   
   // querying the database for tomorrow
   let matchingDay = await Day.find({
-    day: date
+    day: tomorrowDate
   });
   
   matchingDay.length != 0 ? console.log(`A matching day was found`) : console.log('A matching day was NOT found');
@@ -166,28 +173,46 @@ router.get('/week', async (req, res) => {
   
   // array with days before
   let daysBeforeArr = [];
+  let daysAfterArr = [];
 
   // finding the days to add before
-  if (daysBefore) {
-    // the array containing the days to search for and to add before
-    daysBefore --;
-    for (daysBefore; daysBefore >= 0; daysBefore --) {
-      // each loop is 1 day lesser than today
-      console.log('in for loop', daysBefore);
-      // console.log(today.setDate(today.getDate() - 1));
-      let loopYear = new Date(today.setDate(today.getDate() - 1)).getFullYear();
-      console.log('loopYear is', year);
-      let loopMonth = new Date(today.setDate(today.getDate() - 1)).getMonth() + 1;
-      console.log('loopMonth is', month);
-      let loopDay = new Date(today.setDate(today.getDate() - 1)).getDate();
-      console.log('loopDay is', loopDay);
-      let loopDate = loopYear + "-" + loopMonth + "-" + loopDay;
-      daysBeforeArr[daysBefore] = loopDate;
-      console.log('added ', daysBeforeArr[daysBefore]);
+  // if (daysBefore) {
+  //   // the array containing the days to search for and to add before
+  //   daysBefore --;
+  //   for (daysBefore; daysBefore >= 0; daysBefore --) {
+  //     // each loop is 1 day lesser than today
+  //     console.log('in for loop', daysBefore);
+  //     // console.log(today.setDate(today.getDate() - 1));
+  //     let loopYear = new Date(today.setDate(today.getDate() - 1)).getFullYear();
+  //     console.log('loopYear is', year);
+  //     let loopMonth = new Date(today.setDate(today.getDate() - 1)).getMonth() + 1;
+  //     console.log('loopMonth is', month);
+  //     let loopDay = new Date(today.setDate(today.getDate() - 1)).getDate();
+  //     console.log('loopDay is', loopDay);
+  //     let loopDate = loopYear + "-" + loopMonth + "-" + loopDay;
+  //     daysBeforeArr[daysBefore] = loopDate;
+  //     console.log('added ', daysBeforeArr[daysBefore]);
+  //   }
+  // }
+
+  // finding the days to add before
+  if(daysAfter) {
+    console.log('----------');
+    console.log('daysAfter', daysAfter);
+    daysAfter--;
+    let dayToAdd = today;
+    for(daysAfter; daysAfter >= 0; daysAfter--) {
+      console.log('in loop', daysAfter);
+      dayToAdd.setDate(dayToAdd.getDate() + 1);
+      console.log(`adding ${dayToAdd}`);
+      daysAfterArr[daysAfter] = dayToAdd;
+      console.log('length is:', daysAfterArr.length);
     }
   }
 
+
   console.log('Array populated with previous days to add:', daysBeforeArr);
+  console.log('Array populated with next days to add:', daysAfterArr);
 
   // querying the database
   let oggi = await Day.find({
